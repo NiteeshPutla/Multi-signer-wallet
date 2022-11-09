@@ -1,5 +1,5 @@
 # Sample Hardhat Project
-A multi signer wallet is a wallet which needs approval of multiple people to transfer funds./
+A multi signer wallet is a wallet which needs approval of multiple people to transfer funds.
 
 Try running some of the following tasks:
 
