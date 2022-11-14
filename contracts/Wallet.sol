@@ -25,6 +25,17 @@ contract MultiSignerWallet{
         threshold=_threshold;
     }
 
+      modifier ownerOnly() {
+        bool owner = false;
+        for(uint i = 0; i < owners.length; i++) {
+            if(msg.sender == owners[i]) {
+                owner = true;
+            }
+        } 
+        require(owner == true, "Only owner can access");
+        _;
+    }
+
     function getOwners()external view returns(address[] memory){
         return owners;
     }
@@ -42,7 +53,7 @@ contract MultiSignerWallet{
         return transfers;
     }
 
-    function approveTransfer(uint id)external{
+    function approveTransfer(uint id)external ownerOnly{
         require(transfers[id].sent==false,"transfer already has been sent");
         require(approvals[msg.sender][id]==false,"cannot approve again");
 
